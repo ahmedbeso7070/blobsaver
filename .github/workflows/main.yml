@@ -24,11 +24,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
         with:
           arguments: build --no-daemon --scan
-          dependency-graph: generate-and-submit
       - uses: initdc/upload-artifact@feat/artifact-per-file
         with:
           artifact-per-file: true
-          artifact-name-rule: ${{ runner.os }}${ext}
+          artifact-name-rule: "${{ runner.os }}-artifact"
           path: build/distributions/*
       - name: Upload reports on failure
         if: ${{ failure() }}
